@@ -1,7 +1,4 @@
-import { defineStore } from '@pinia/nuxt';
-import { createPinia } from 'pinia';
-
-export const pinia = createPinia();
+import { defineStore } from 'pinia';
 
 export const useStore = defineStore('store', {
   pinia,
@@ -15,20 +12,4 @@ export const useStore = defineStore('store', {
     selectedList: null,
     readmeContent: '',
   }),
-
-  actions: {
-    async fetchLists() {
-      // no need to fetch anything since the lists are defined statically in the store
-    },
-  },
-
-  mutations: {
-    setSelectedList(list) {
-      this.selectedList = list;
-    },
-
-    setReadmeContent(content) {
-      this.readmeContent = content;
-    },
-  },
 });

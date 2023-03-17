@@ -13,25 +13,19 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script setup>
 import { getRepoContent } from "@/utils/github";
-import { useStore } from '~/store/index.js'
+import { useStore } from '@/store/index'
 
-export default defineComponent({
-  setup() {
-    const selectList = async (list) => {
-      store.setSelectedList(list);
-      store.setReadmeContent(await getRepoContent(list.owner, list.name, "README.md"));
-    };
+const store = useStore()
 
-    return {
-      lists: store.state.lists,
-      selectedList: store.state.selectedList,
-      readmeContent: store.state.readmeContent,
-      selectList,
-    };
-  },
-});
+const selectList = async (list) => {
+  store.setSelectedList(list);
+  store.setReadmeContent(await getRepoContent(list.owner, list.name, "README.md"));
+};
+
+const lists = store.state.lists
+const selectedList = store.state.selectedList
+const readmeContent = store.state.readmeContent
 
 </script>
